@@ -1,0 +1,8 @@
+build
+coverage
+.next
+node_modules
+*.log
+mongodb-data
+resources
+tinymce.min.js

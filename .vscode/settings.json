@@ -1,0 +1,63 @@
+{
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": false,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  // Fonts settings
+  "explorer.compactFolders": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.packageManager": "yarn",
+
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[javascriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+
+  "files.associations": {
+    ".sequelizerc": "javascript",
+    ".stylelintrc": "json",
+    ".prettierrc": "json"
+  },
+
+  "editor.renderLineHighlight": "all",
+
+  "extensions.ignoreRecommendations": true,
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
+  },
+  "breadcrumbs.enabled": true,
+  "git.enableSmartCommit": true,
+
+  "workbench.activityBar.visible": true,
+
+  "files.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "node_modules": true
+  },
+
+  // Use StyleLint for css, less and scss instead VSCode linter
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "files.eol": "\n",
+  "workbench.editor.pinnedTabSizing": "shrink"
+}

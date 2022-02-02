@@ -1,0 +1,49 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2020": true,
+    "node": true,
+    "jest/globals": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "extends": ["airbnb", "prettier", "plugin:jest/recommended"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "plugins": ["react", "react-hooks", "prettier", "monorepo", "jest"],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "func-names": "off",
+    "no-process-exit": "off",
+    "object-shorthand": "off",
+    "class-methods-use-this": "off",
+    "react/jsx-filename-extension": "off",
+    "monorepo/no-internal-import": "off",
+    "monorepo/no-relative-import": "error",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+    "jest/expect-expect": "off",
+    "no-underscore-dangle": "off",
+    "eslint-disable-next-line": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-curly-newline": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/img-redundant-alt": "off",
+    "react/default-props-match-prop-types": "off",
+    "import/prefer-default-export": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}
