@@ -10,7 +10,8 @@ router.get('/games', async (req, res) => {
   res.send(games);
 });
 
-router.post('games', async (req, res) => {
+// Add new game
+router.post('/games', async (req, res) => {
   const game = new Game({
     user1: 'andres',
     user2: 'perez',
@@ -20,6 +21,12 @@ router.post('games', async (req, res) => {
   await game.save();
 
   req.send(game);
+});
+
+// Get one game
+router.get('/games/:id', async (req, res) => {
+  const game = await Game.findOne({ _id: req.params.id });
+  res.send(game);
 });
 
 export default router;
