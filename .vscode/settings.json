@@ -51,6 +51,7 @@
   "files.exclude": {
     "**/.git": true,
     "**/node_modules": true,
+    "**/yarn.lock": true,
     "node_modules": true
   },
 
