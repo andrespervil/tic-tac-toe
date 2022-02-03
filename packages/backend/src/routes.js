@@ -1,6 +1,10 @@
 import express from 'express';
 
+// Import models
 import Game from './models/game.js';
+
+// Import yup validations
+import { gameSchema } from './yup.js';
 
 const router = express.Router();
 
@@ -11,16 +15,20 @@ router.get('/games', async (req, res) => {
 });
 
 // Add new game
-router.post('/games', async (req, res) => {
+router.post('/games', async ({ body }, res) => {
+  const data = gameSchema.validate({ ...body });
+
+  debugger;
+
   const game = new Game({
-    user1: 'andres',
-    user2: 'perez',
-    winner: 'andres'
+    user1: body.user1,
+    user2: body.user2,
+    winner: body.winner
   });
 
   await game.save();
 
-  req.send(game);
+  res.status(200).send(game);
 });
 
 // Get one game
