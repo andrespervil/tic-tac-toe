@@ -14,17 +14,5 @@ En el frontend usaré React, junto con Remmix y SASS como procesador de CSS.
 
 ## 3. Instalacion y Ejecución
 
-## 4. Tareas, fechas y tiempos
-
-### 2 de Febrero
-
-- Leer instrucciones
-- Crear monorepo
-- Diseño Arquitectura
-
-  Total: Xh Xm
-
-### 3 de Febrero
-
-- Diseño BBDD
-- Diseño Frontend
+2 de Febrero: 2h
+3 de Febrero:
