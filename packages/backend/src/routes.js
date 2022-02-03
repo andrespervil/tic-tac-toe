@@ -26,19 +26,23 @@ router.post('/games', async ({ body }, res) => {
 
     res.status(200).send(result);
   } else {
-    res
-      .status(400)
-      .send({
-        errors: validateGame.data.map(error => error.message),
-        message: 'Validation error, Game was not saved'
-      });
+    res.status(400).send({
+      errors: validateGame.data.map(error => error.message),
+      message: 'Validation error, Game was not saved's
+    });
   }
 });
 
 // Get one game
 router.get('/games/:id', async (req, res) => {
-  const game = await Game.findOne({ _id: req.params.id });
-  res.send(game);
+  try {
+    const game = await Game.findOne({ _id: req.params.id });
+    res.status(200).send(game);
+  } catch (error) {
+    res
+      .status(400)
+      .send(`Error searching game by ID, Game ID:${req.params.id}`);
+  }
 });
 
 export default router;
