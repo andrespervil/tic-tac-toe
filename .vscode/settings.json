@@ -60,5 +60,8 @@
   "less.validate": false,
   "scss.validate": false,
   "files.eol": "\n",
-  "workbench.editor.pinnedTabSizing": "shrink"
+  "workbench.editor.pinnedTabSizing": "shrink",
+  "[css]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  }
 }
