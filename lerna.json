@@ -1,6 +1,6 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "version": "0.0.0"
+  "name": "tic-tac-toe",
+  "packages": ["packages/*"],
+  "version": "0.0.0",
+  "npmClient": "yarn"
 }

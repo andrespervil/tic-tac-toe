@@ -4,7 +4,8 @@ import Game from './game.js';
 
 const connectDb = () => {
   return mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   });
 };
 
