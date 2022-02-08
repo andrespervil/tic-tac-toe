@@ -10,13 +10,13 @@
       "name": "Attach by Process ID",
       "protocol": "legacy",
       "processId": "${command:PickProcess}",
-      "port": 9001
+      "port": 9229
     },
     {
       "type": "node",
       "request": "attach",
       "name": "Attach to Backend",
-      "port": 9001,
+      "port": 15000,
       "address": "localhost",
       "localRoot": "${workspaceFolder}",
       "remoteRoot": "/usr/src/app",
