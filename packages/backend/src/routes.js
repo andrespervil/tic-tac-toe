@@ -47,28 +47,44 @@ router.get('/games/:id', async ({ params }, res) => {
   }
 });
 
-// Check if some player won
 router.post('/game/userPlay', async ({ body: { board } }, res) => {
+  // Validate board
   const validateBoard = validateWithSchema(boardSchema, board);
 
   if (validateBoard.valid) {
-    // 1. Check if some player won
-    const winner = checkWinner(board);
+    // 1. Check if player won
+    let winner = checkWinner(board);
 
-    if (winner) {
-      return res.status(200).send({ status: 'finished', winner });
+    if (winner === 'draw') {
+      return res.status(200).send({ status: 'finished', winner: null, board });
     }
-    // 2. IA play
+    if (winner === 'X') {
+      return res
+        .status(200)
+        .send({ status: 'finished', winner: 'Player Win', board });
+    }
+
+    // 3. IA play
     const newBoard = await iaPlay(board);
 
-    // 3. Check if IA won
-    const iaWin = checkWinner(board);
-    if (iaWin) {
-      return res.status(200).send({ status: 'finished', winner });
+    // 4. Check IA won or draw
+    winner = checkWinner(newBoard);
+
+    if (winner === 'draw') {
+      return res
+        .status(200)
+        .send({ status: 'finished', winner: null, board: newBoard });
+    }
+    if (winner === 'X') {
+      return res
+        .status(200)
+        .send({ status: 'finished', winner: 'IA Win', board: newBoard });
     }
 
-    // Return new board, status: playing
-    res.status(200).send({ status: 'playing', winner: null, board: newBoard });
+    // 6. Return new board, status: playing
+    return res
+      .status(200)
+      .send({ status: 'Next player: X', winner: null, board: newBoard });
   } else {
     res.status(400).send(formatError(validateBoard));
   }
