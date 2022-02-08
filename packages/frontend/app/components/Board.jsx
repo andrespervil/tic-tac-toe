@@ -1,24 +1,31 @@
 import { useState } from 'react';
-import { useLoaderData } from 'remix';
+import { useActionData } from 'remix';
 
-// Fetchers
-import { getLastGames } from '../utils/fetchers';
+import axios from 'axios';
+
+import { getNextTurn } from '../utils/fetchers';
 
 const Board = () => {
   const [board, setBoard] = useState([...Array(9).keys()].map(() => ' '));
-  const [left, setLeft] = useState(9);
+  const [status, setStatus] = useState('Next player: X');
 
-  const handleCellClick = (cell, index) => {
+  const handleCellClick = async (cell, index) => {
     if (cell === ' ') {
       let newBoard = board.map((c, i) => (index === i ? 'X' : c));
-
       setBoard(newBoard);
 
-      fetchNextTurn(board);
+      const response = await getNextTurn(newBoard);
+
+      console.log(response);
+
+      if (response.status === 'win') {
+        // Handle WIN
+      }
+
+      setStatus(response.status);
+      setBoard(response.board);
     }
   };
-
-  let games = useLoaderData();
 
   return (
     <>
@@ -35,13 +42,8 @@ const Board = () => {
             </div>
           ))}
       </div>
-      <pre>{games || 'Sin datos'}</pre>
     </>
   );
-};
-
-export let loader = async () => {
-  return getLastGames();
 };
 
 export default Board;

@@ -1,5 +1,6 @@
 import {
   Links,
+  useLoaderData,
   LiveReload,
   Meta,
   Outlet,
@@ -9,11 +10,19 @@ import {
 
 import styles from './styles/root.css';
 
+import axios from 'axios';
+
 export function meta() {
-  return { title: 'New Remix App' };
+  return { title: 'Tic Tac Toe' };
 }
 
 export default function App() {
+  const data = useLoaderData();
+
+  axios.defaults.baseURL = data;
+  axios.defaults.headers.post['Content-Type'] = 'application/json';
+  axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+
   return (
     <html lang='en'>
       <head>
@@ -30,6 +39,10 @@ export default function App() {
       </body>
     </html>
   );
+}
+
+export async function loader() {
+  return process.env.API_URL;
 }
 
 export function links() {
