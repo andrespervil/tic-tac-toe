@@ -4,17 +4,11 @@ let gameSchema = object({
   user1: string().required(),
   user2: string().required(),
   winner: string()
-    .required()
     .oneOf(
-      [ref('user1'), ref('user2')],
-      'This players have not played the match!'
+      [ref('user1'), ref('user2'), null],
+      'The winner must be one of the two players'
     )
-    .required(),
-  resume: array().required()
-});
-
-let singleIdSchema = object().shape({
-  id: string().required().matches('/^[0-9a-fA-F]{24}$/')
+    .nullable()
 });
 
 let boardSchema = array()
@@ -23,4 +17,4 @@ let boardSchema = array()
   .max(9)
   .required();
 
-export { gameSchema, singleIdSchema, boardSchema };
+export { gameSchema, boardSchema };
