@@ -22,14 +22,22 @@ const formatError = error => {
 };
 
 const checkWinner = board => {
+  let winner = null;
+
   WIN_OPTIONS.every(option => {
     const [a, b, c] = option;
     if (board[a] !== ' ' && board[a] === board[b] && board[a] === board[c]) {
-      return board[a];
+      winner = board[a];
+      return false;
+    } else {
+      return true;
     }
   });
 
-  if (board.filter(cell => cell === ' ').length === 0) {
+  if (winner) {
+    return winner;
+  }
+  if (!winner && board.filter(cell => cell === ' ').length === 0) {
     return 'draw';
   }
 
@@ -40,9 +48,12 @@ const checkWinner = board => {
 const getShuffledMoveFromConst = (array, board) => {
   const shuffledArray = array.sort(() => Math.random() - 0.5);
 
+  let touched = false;
+
   shuffledArray.every(corner => {
-    if (board[corner] === ' ') {
+    if (board[corner] === ' ' && !touched) {
       board[corner] = 'O';
+      touched = true;
       return false;
     } else {
       return true;
@@ -53,26 +64,62 @@ const getShuffledMoveFromConst = (array, board) => {
 };
 
 const iaPlay = board => {
-  let hasPlayed = false;
+  let touched = false;
 
-  // 1. Try to block X play
+  // 1. Try to win
+  WIN_OPTIONS.every(option => {
+    const [a, b, c] = option;
+
+    if (board[a] === 'O' && board[b] === 'O' && board[c] === ' ' && !touched) {
+      board[c] = 'O';
+      touched = true;
+      return false;
+    }
+    if (board[b] === 'O' && board[c] === 'O' && board[a] === ' ' && !touched) {
+      board[a] = 'O';
+      touched = true;
+      return false;
+    }
+    if (board[a] === 'O' && board[c] === 'O' && board[b] === ' ' && !touched) {
+      board[b] = 'O';
+      touched = true;
+      return false;
+    }
+
+    return true;
+  });
+
+  if (touched) {
+    return board;
+  }
+
+  // 2. Try to block X play
 
   WIN_OPTIONS.every(option => {
     const [a, b, c] = option;
 
-    if (board[a] === 'X' && board[b] === 'X' && board[c] === ' ') {
+    if (board[a] === 'X' && board[b] === 'X' && board[c] === ' ' && !touched) {
       board[c] = 'O';
-      return board;
+      touched = true;
+      return false;
     }
-    if (board[b] === 'X' && board[c] === 'X' && board[a] === ' ') {
+    if (board[b] === 'X' && board[c] === 'X' && board[a] === ' ' && !touched) {
       board[a] = 'O';
-      return board;
+      touched = true;
+      return false;
     }
-    if (board[a] === 'X' && board[c] === 'X' && board[b] === ' ') {
+    if (board[a] === 'X' && board[c] === 'X' && board[b] === ' ' && !touched) {
       board[b] = 'O';
-      return board;
+      touched = true;
+      return false;
     }
+
+    return true;
   });
+
+  if (touched) {
+    return board;
+  }
 
   // 2. Take center if available
 

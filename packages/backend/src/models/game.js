@@ -11,13 +11,8 @@ const gameSchema = new mongoose.Schema(
       type: String
     },
     winner: {
-      required: true,
+      required: false,
       type: String
-    },
-    resume: {
-      required: true,
-      type: [String],
-      default: []
     }
   },
   { timestamps: true }
