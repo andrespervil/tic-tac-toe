@@ -1,12 +1,21 @@
 import axios from 'axios';
 
-async function getLastGames() {
+const getGamesResume = async () => {
   let res = await axios.get('/games');
   return res.data;
-}
-async function getNextTurn(board) {
+};
+const getNextTurn = async board => {
   let res = await axios.post('/game/userPlay', { board });
   return res.data;
-}
+};
 
-export { getLastGames, getNextTurn };
+const saveGameResult = async winner => {
+  let res = await axios.post('/games', {
+    user1: 'player',
+    user2: 'ia',
+    winner
+  });
+  return res.data;
+};
+
+export { getGamesResume, getNextTurn, saveGameResult };

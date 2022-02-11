@@ -8,7 +8,7 @@ import {
   ScrollRestoration
 } from 'remix';
 
-import styles from './styles/root.css';
+import styles from '~/styles/root.css';
 
 import axios from 'axios';
 
