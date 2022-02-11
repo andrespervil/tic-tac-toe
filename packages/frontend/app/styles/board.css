@@ -59,6 +59,10 @@
   .board > div {
     height: 100px;
   }
+
+  .board h2 {
+    font-size: 90px;
+  }
 }
 
 @media (max-width: 350px) {
@@ -68,5 +72,9 @@
   }
   .board > div {
     height: 66px;
+  }
+
+  .board h2 {
+    font-size: 60px;
   }
 }

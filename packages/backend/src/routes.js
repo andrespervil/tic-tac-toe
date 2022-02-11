@@ -4,7 +4,7 @@ import express from 'express';
 import Game from './models/game.js';
 
 // Import yup validations
-import { gameSchema, singleIdSchema, boardSchema } from './yup.js';
+import { gameSchema, boardSchema } from './yup.js';
 
 // Import utils
 import {

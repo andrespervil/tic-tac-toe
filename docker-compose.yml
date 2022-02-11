@@ -12,7 +12,7 @@ services:
       - '15000:9229'
     environment:
       PORT: 5000
-      DATABASE_URL: mongodb://mongo:27017/tictactoe
+      DATABASE_URL: mongodb://mongodb1:27017/tictactoe
     volumes:
       - ./packages/backend:/usr/src/app/packages/backend
       - ./node_modules:/usr/src/app/node_modules
@@ -30,7 +30,7 @@ services:
       - '3000:3000'
       - '13000:9229'
     environment:
-      API_URL: http://backend:5000/api
+      API_URL: http://localhost:5000/api
     volumes:
       - ./packages/frontend:/usr/src/app/packages/frontend
       - ./node_modules:/usr/src/app/node_modules
@@ -40,12 +40,15 @@ services:
       - tictactoe
     restart: unless-stopped
 
-  mongo:
+  mongodb1:
+    hostname: mongodb1
     image: mongo
-    container_name: mongo
+    container_name: mongodb1
     ports:
       - 27017:27017
     restart: unless-stopped
+    networks:
+      - tictactoe
 
 networks:
   tictactoe:
