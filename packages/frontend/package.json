@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "tic-tac-toe",
+  "name": "frontend",
   "description": "Frontend for the tic-tac-toe game",
   "license": "",
   "scripts": {

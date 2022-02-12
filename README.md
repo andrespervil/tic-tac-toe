@@ -46,7 +46,7 @@ _Despues simplemente entramos en cada uno de los paquetes y ejecutamos el comand
 
 ## Ejecutando los Tests ⚙️
 
-_Con el comando `yarn test` se correran los test del paquete en el que nos encontremos_
+_Ejecutando el comando `yarn test` en la raiz se correran los tests de todos los paquetes._
 
 ## Puertos
 

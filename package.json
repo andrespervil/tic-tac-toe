@@ -1,6 +1,10 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "test": "lerna run test",
+    "update-version": "lerna version"
+  },
   "devDependencies": {
     "eslint": "^7.12.1",
     "eslint-config-airbnb": "^18.2.0",
