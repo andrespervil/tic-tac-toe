@@ -63,62 +63,49 @@ const getShuffledMoveFromConst = (array, board) => {
   return board;
 };
 
+const calculateBestMove = (board, obj, player) => {
+  let touched = false;
+
+  WIN_OPTIONS.every(option => {
+    const [a, b, c] = option;
+
+    if (board[a] === obj && board[b] === obj && board[c] === ' ' && !touched) {
+      board[c] = player;
+      touched = true;
+      return false;
+    }
+    if (board[b] === obj && board[c] === obj && board[a] === ' ' && !touched) {
+      board[a] = player;
+      touched = true;
+      return false;
+    }
+    if (board[a] === obj && board[c] === obj && board[b] === ' ' && !touched) {
+      board[b] = player;
+      touched = true;
+      return false;
+    }
+
+    return true;
+  });
+
+  return touched ? board : null;
+};
+
 const iaPlay = board => {
   let touched = false;
 
   // 1. Try to win
-  WIN_OPTIONS.every(option => {
-    const [a, b, c] = option;
+  let bestMove = calculateBestMove(board, 'O', 'O');
 
-    if (board[a] === 'O' && board[b] === 'O' && board[c] === ' ' && !touched) {
-      board[c] = 'O';
-      touched = true;
-      return false;
-    }
-    if (board[b] === 'O' && board[c] === 'O' && board[a] === ' ' && !touched) {
-      board[a] = 'O';
-      touched = true;
-      return false;
-    }
-    if (board[a] === 'O' && board[c] === 'O' && board[b] === ' ' && !touched) {
-      board[b] = 'O';
-      touched = true;
-      return false;
-    }
-
-    return true;
-  });
-
-  if (touched) {
-    return board;
+  if (bestMove) {
+    return bestMove;
   }
 
   // 2. Try to block X play
+  bestMove = calculateBestMove(board, 'X', 'O');
 
-  WIN_OPTIONS.every(option => {
-    const [a, b, c] = option;
-
-    if (board[a] === 'X' && board[b] === 'X' && board[c] === ' ' && !touched) {
-      board[c] = 'O';
-      touched = true;
-      return false;
-    }
-    if (board[b] === 'X' && board[c] === 'X' && board[a] === ' ' && !touched) {
-      board[a] = 'O';
-      touched = true;
-      return false;
-    }
-    if (board[a] === 'X' && board[c] === 'X' && board[b] === ' ' && !touched) {
-      board[b] = 'O';
-      touched = true;
-      return false;
-    }
-
-    return true;
-  });
-
-  if (touched) {
-    return board;
+  if (bestMove) {
+    return bestMove;
   }
 
   // 2. Take center if available
