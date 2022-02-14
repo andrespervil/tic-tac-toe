@@ -10,11 +10,7 @@ const getNextTurn = async board => {
 };
 
 const saveGameResult = async winner => {
-  let res = await axios.post('/games', {
-    user1: 'player',
-    user2: 'ia',
-    winner
-  });
+  let res = await axios.post('/games', { winner });
   return res.data;
 };
 

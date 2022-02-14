@@ -20,21 +20,9 @@ const router = express.Router();
 router.get('/games', async (req, res) => {
   try {
     const total = await Game.countDocuments({ user1: 'player', user2: 'ia' });
-    const playerWins = await Game.countDocuments({
-      user1: 'player',
-      user2: 'ia',
-      winner: 'player'
-    });
-    const draws = await Game.countDocuments({
-      user1: 'player',
-      user2: 'ia',
-      winner: null
-    });
-    const iaWins = await Game.countDocuments({
-      user1: 'player',
-      user2: 'ia',
-      winner: 'ia'
-    });
+    const playerWins = await Game.countDocuments({ winner: 'player' });
+    const draws = await Game.countDocuments({ winner: null });
+    const iaWins = await Game.countDocuments({ winner: 'ia' });
 
     return res.status(200).send({ total, playerWins, iaWins, draws });
   } catch (err) {
